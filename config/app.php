@@ -236,6 +236,12 @@ return [
             'points' => App\Classes\PointsPrizeItem::class,
             'items' => App\Classes\ItemsPrizeItem::class,
         ],
+        'user_classes' => [
+            'money' => App\Classes\UserMoneyPrizeItem::class,
+            'points' => App\Classes\UserPointsPrizeItem::class,
+            'items' => App\Classes\UserItemsPrizeItem::class,
+        ],
+        'exchange_rate' => 5
     ]
 
 ];

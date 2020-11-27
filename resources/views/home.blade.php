@@ -14,6 +14,23 @@
                         </div>
                     @endif
 
+                    <table>
+                        <tr>
+                            <td><b>{{ __('Тип приза') }}</b></td>
+                            <td><b>{{ __('Количество') }}</b></td>
+                            <td><b>{{ __('Статус') }}</b></td>
+                            <td><b>{{ __('Действия') }}</b></td>
+                        </tr>
+                        @foreach($prizes as $prize)
+                            <tr>
+                                <td>{{$prize->prizeItem->kind}}</td>
+                                <td>{{$prize->count}}</td>
+                                <td>{{$prize->prize()->getStatus()}}</td>
+                                <td>{!! $prize->prize()->getActions() !!}</td>
+                            </tr>
+                        @endforeach
+                    </table>
+
                     <form action="{{route('get_prize')}}" method="get">
                         <button type="submit" class="btn btn-primary">
                             {{__('Забрать приз')}}

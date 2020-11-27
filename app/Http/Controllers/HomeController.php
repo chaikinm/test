@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\PrizeItem;
+use App\Models\UserPrize;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -49,6 +51,21 @@ class HomeController extends Controller
         }
 
         $user_prize->save();
+
+        return redirect(route('home'));
+    }
+
+
+    public function refuse_prize($id) {
+        $prize = UserPrize::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $prize->delete();
+
+        return redirect(route('home'));
+    }
+
+    public function exchange_prize($id) {
+        $prize = UserPrize::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $prize->prize()->exchange();
 
         return redirect(route('home'));
     }
