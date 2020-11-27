@@ -55,7 +55,6 @@ class HomeController extends Controller
         return redirect(route('home'));
     }
 
-
     public function refuse_prize($id) {
         $prize = UserPrize::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
         $prize->delete();
