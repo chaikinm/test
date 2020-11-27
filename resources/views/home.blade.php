@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <form action="{{route('get_prize')}}" method="get">
+                        <button type="submit" class="btn btn-primary">
+                            {{__('Забрать приз')}}
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

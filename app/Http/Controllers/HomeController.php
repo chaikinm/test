@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PrizeItem;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,5 +25,31 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function get_prize()
+    {
+        $kinds = config('app.prizes.kinds');
+        $user_prize = null;
+
+        while (is_null($user_prize)) {
+            if (count($kinds) <= 0) {
+                abort(500);
+            }
+            $rand_pos = array_rand($kinds);
+            $item = PrizeItem::where('kind', $kinds[$rand_pos])->where('count', '>', 0)->limit(1)->first();
+            if (is_null($item)) {
+                abort(500);
+            } else {
+                $user_prize = $item->prize()->newPrize();
+                if (is_null($user_prize)) {
+                    unset($kinds[$rand_pos]);
+                }
+            }
+        }
+
+        $user_prize->save();
+
+        return redirect(route('home'));
     }
 }

@@ -20,3 +20,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home/get_prize', [App\Http\Controllers\HomeController::class, 'get_prize'])->name('get_prize');

@@ -230,7 +230,12 @@ return [
     ],
 
     'prizes' => [
-        'kinds' => ['money', 'points', 'items']
+        'kinds' => ['money', 'points', 'items'],
+        'classes' => [
+            'money' => App\Classes\MoneyPrizeItem::class,
+            'points' => App\Classes\PointsPrizeItem::class,
+            'items' => App\Classes\ItemsPrizeItem::class,
+        ],
     ]
 
 ];
