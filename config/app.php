@@ -229,4 +229,8 @@ return [
 
     ],
 
+    'prizes' => [
+        'kinds' => ['money', 'points', 'items']
+    ]
+
 ];
